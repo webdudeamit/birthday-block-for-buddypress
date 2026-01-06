@@ -1,5 +1,5 @@
 === BuddyPress Birthday ===
-Contributors: amitkumarahari
+Contributors: amitgrhr
 Tags: buddypress, birthday, members, community, social
 Requires at least: 5.2
 Tested up to: 6.4
