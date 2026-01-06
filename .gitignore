@@ -1,1 +1,19 @@
-node_modules
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+
+# macOS
+.DS_Store
+._*
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# WordPress
+*.log
+
+# Build (keep build for distribution)
+# node_modules is ignored but build folder is kept for WordPress.org submission
