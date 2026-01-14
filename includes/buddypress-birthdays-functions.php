@@ -1,6 +1,6 @@
 <?php
 /**
- * BuddyPress Birthday Helper Functions
+ * Birthday Block for BuddyPress Helper Functions
  *
  * Core birthday calculation and retrieval functions
  *

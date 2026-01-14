@@ -10,7 +10,7 @@
  * @wordpress-plugin
  * Plugin Name:       Birthday Block for BuddyPress
  * Plugin URI:        https://wordpress.org/plugins/birthday-block-for-buddypress/
- * Description:       Display upcoming birthdays of your BuddyPress members with a beautiful, customizable Gutenberg block. Perfect for building community engagement!
+ * Description:       Show upcoming birthdays of your BuddyPress members using a beautiful, customizable Gutenberg block—perfect for boosting community engagement!
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
@@ -111,11 +111,6 @@ class BuddyBirthday {
 		// Load admin settings (only in admin)
 		if ( is_admin() ) {
 			require_once $this->path . 'includes/buddypress-birthdays-admin.php';
-
-			// Load dummy data tool only in debug mode
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				require_once $this->path . 'includes/populate-dummy-birthdays.php';
-			}
 		}
 	}
 
@@ -144,7 +139,7 @@ class BuddyBirthday {
 				<?php
 				printf(
 					/* translators: %s: BuddyPress */
-					esc_html__( 'BuddyPress Birthday requires %s to be installed and active.', 'birthday-block-for-buddypress' ),
+					esc_html__( 'Birthday Block for BuddyPress requires %s to be installed and active.', 'birthday-block-for-buddypress' ),
 					'<strong>' . esc_html__( 'BuddyPress', 'birthday-block-for-buddypress' ) . '</strong>'
 				);
 				?>
@@ -170,7 +165,7 @@ class BuddyBirthday {
 				<?php
 				printf(
 					/* translators: %s: Settings link */
-					esc_html__( 'BuddyPress Birthday: Please configure the birthday field in %s.', 'birthday-block-for-buddypress' ),
+					esc_html__( 'Birthday Block for BuddyPress: Please configure the birthday field in %s.', 'birthday-block-for-buddypress' ),
 					'<a href="' . esc_url( admin_url( 'options-general.php?page=bp-birthday-settings' ) ) . '">' .
 					esc_html__( 'Settings > BP Birthday', 'birthday-block-for-buddypress' ) .
 					'</a>'

@@ -1,6 +1,6 @@
 <?php
 /**
- * BuddyPress Birthday Admin Settings
+ * Birthday Block for BuddyPress Admin Settings
  *
  * Admin interface for plugin configuration
  *
@@ -47,7 +47,7 @@ class BuddyPress_Birthday_Admin {
 	 */
 	public function add_admin_menu() {
 		add_options_page(
-			__( 'BuddyPress Birthday Settings', 'birthday-block-for-buddypress' ),
+			__( 'Birthday Block for BuddyPress Settings', 'birthday-block-for-buddypress' ),
 			__( 'BP Birthday', 'birthday-block-for-buddypress' ),
 			'manage_options',
 			'bp-birthday-settings',
@@ -160,7 +160,7 @@ class BuddyPress_Birthday_Admin {
 			<h2><?php esc_html_e( 'How to Use', 'birthday-block-for-buddypress' ); ?></h2>
 			<ol>
 				<li><?php esc_html_e( 'Select the xProfile field that contains member birthdays above.', 'birthday-block-for-buddypress' ); ?></li>
-				<li><?php esc_html_e( 'Add the "BuddyPress Birthday" block to any page or post.', 'birthday-block-for-buddypress' ); ?></li>
+				<li><?php esc_html_e( 'Add the "Birthday Block for BuddyPress" block to any page or post.', 'birthday-block-for-buddypress' ); ?></li>
 				<li><?php esc_html_e( 'Customize the block settings in the editor sidebar.', 'birthday-block-for-buddypress' ); ?></li>
 			</ol>
 

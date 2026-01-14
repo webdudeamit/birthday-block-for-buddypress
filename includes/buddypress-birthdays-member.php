@@ -1,6 +1,6 @@
 <?php
 /**
- * BuddyPress Birthday Members REST API
+ * Birthday Block for BuddyPress Members REST API
  *
  * Handles REST API endpoints for birthday data
  *

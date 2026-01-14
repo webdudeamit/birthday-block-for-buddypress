@@ -1,5 +1,5 @@
 /**
- * BuddyPress Birthday Frontend Styles
+ * Birthday Block for BuddyPress Frontend Styles
  *
  * Styles for the birthday block on the frontend
  * Designed to match BuddyPress default styling
@@ -232,21 +232,16 @@
 // Dark mode support (if theme supports it)
 @media (prefers-color-scheme: dark) {
     .bp-birthday-block {
-        .bp-birthday-title {
-            color: #f0f0f0;
-        }
-
+        
         .bp-birthday-item {
-            background: #1e1e1e;
             border-color: #333;
 
             &:hover {
-                background: #2a2a2a;
                 border-color: #444;
             }
 
             .item-title a {
-                color: #f0f0f0;
+                // color: #f0f0f0;
 
                 &:hover {
                     color: #4a9eff;
@@ -255,10 +250,6 @@
 
             .item-meta {
                 color: #ccc;
-
-                .bp-birthday-date {
-                    color: #ddd;
-                }
             }
 
             .action .button {

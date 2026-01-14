@@ -50,7 +50,7 @@ The birthday block includes extensive customization options:
 
 = Multilingual Ready =
 
-BuddyPress Birthday is translation-ready and follows WordPress internationalization standards.
+Birthday Block for BuddyPress is translation-ready and follows WordPress internationalization standards.
 
 == Installation ==
 
@@ -58,7 +58,7 @@ BuddyPress Birthday is translation-ready and follows WordPress internationalizat
 
 1. Log in to your WordPress admin panel
 2. Go to Plugins > Add New
-3. Search for "BuddyPress Birthday"
+3. Search for "Birthday Block for BuddyPress"
 4. Click "Install Now" and then "Activate"
 
 = Manual Installation =
@@ -75,12 +75,12 @@ BuddyPress Birthday is translation-ready and follows WordPress internationalizat
 3. Go to Settings > BP Birthday
 4. Select your birthday xProfile field
 5. Configure default settings (optional)
-6. Add the "BuddyPress Birthday" block to any post or page
+6. Add the "Birthday Block for BuddyPress" block to any post or page
 
 = Usage =
 
 1. Edit a post or page with the block editor
-2. Add the "BuddyPress Birthday" block (find it under WBCOM Designs category)
+2. Add the "Birthday Block for BuddyPress" block (find it under WBCOM Designs category)
 3. Customize the block settings in the sidebar
 4. Publish your page
 
@@ -147,11 +147,11 @@ Yes! The plugin uses standard BuddyPress CSS classes. You can add custom CSS to 
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of BuddyPress Birthday plugin.
+Initial release of Birthday Block for BuddyPress plugin.
 
 == Privacy Policy ==
 
-BuddyPress Birthday does not collect, store, or share any user data outside of your WordPress installation. All birthday information is stored in your BuddyPress xProfile fields.
+Birthday Block for BuddyPress does not collect, store, or share any user data outside of your WordPress installation. All birthday information is stored in your BuddyPress xProfile fields.
 
 == Support ==
 

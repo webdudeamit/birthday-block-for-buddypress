@@ -1,16 +1,16 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 2,
-    "name": "wbcom-designs/buddypress-birthday",
+    "name": "buddypress/birthday-block-for-buddypress",
     "version": "1.0.0",
-    "title": "BuddyPress Birthday",
-    "category": "wbcom-designs",
+    "title": "Birthday Block for BuddyPress",
+    "category": "buddypress",
     "icon": "buddicons-community",
-    "description": "Display upcoming birthdays of your members.",
+    "description": "Display upcoming birthdays of your community members in one place.",
     "supports": {
         "html": false
     },
-    "textdomain": "buddypress-birthday",
+    "textdomain": "birthday-block-for-buddypress",
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
     "style": "file:./style-index.css",

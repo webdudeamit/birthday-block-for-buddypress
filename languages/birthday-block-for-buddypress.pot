@@ -124,7 +124,7 @@ msgid "No upcoming birthdays"
 msgstr ""
 
 #: includes/buddypress-birthdays-admin.php:50
-msgid "BuddyPress Birthday Settings"
+msgid "Birthday Block for BuddyPress Settings"
 msgstr ""
 
 #: includes/buddypress-birthdays-admin.php:51
@@ -164,7 +164,7 @@ msgid "Select the xProfile field that contains member birthdays above."
 msgstr ""
 
 #: includes/buddypress-birthdays-admin.php:163
-msgid "Add the \"BuddyPress Birthday\" block to any page or post."
+msgid "Add the \"Birthday Block for BuddyPress\" block to any page or post."
 msgstr ""
 
 #: includes/buddypress-birthdays-admin.php:164
@@ -284,7 +284,7 @@ msgid "No birthday field configured. Please configure it in Settings > BP Birthd
 msgstr ""
 
 #: includes/populate-dummy-birthdays.php:174
-msgid "BuddyPress Birthday - Dummy Data"
+msgid "Birthday Block for BuddyPress - Dummy Data"
 msgstr ""
 
 #: includes/populate-dummy-birthdays.php:181
