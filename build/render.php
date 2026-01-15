@@ -22,7 +22,7 @@ $limit        = isset( $attributes['limit'] ) ? intval( $attributes['limit'] ) :
 $emoji        = isset( $attributes['emoji'] ) ? $attributes['emoji'] : true;
 
 // Get birthday field from settings.
-$field_id = get_option( 'bp_birthday_field_id', 0 );
+$field_id = get_option( 'buddy_birthday_field_id', 0 );
 
 if ( ! $field_id ) {
 	?>
@@ -45,7 +45,7 @@ if ( ! $field_id ) {
 
 // Get birthdays.
 $user_id   = ( 'friends' === $birthdays_of ) ? get_current_user_id() : 0;
-$birthdays = bp_birthday_get_upcoming_birthdays( $field_id, $range_limit, $limit, $birthdays_of, $user_id );
+$birthdays = buddy_birthday_get_upcoming_birthdays( $field_id, $range_limit, $limit, $birthdays_of, $user_id );
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
@@ -94,7 +94,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 						<div class="item-meta">
 							<span class="bp-birthday-date">
-								<?php echo esc_html( bp_birthday_format_date( $birthday['next_birthday'], $date_format ) ); ?>
+								<?php echo esc_html( buddy_birthday_format_date( $birthday['next_birthday'], $date_format ) ); ?>
 							</span>
 
 							<?php if ( 0 === $birthday['days_until'] ) : ?>

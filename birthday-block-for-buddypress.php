@@ -20,6 +20,7 @@
  * Domain Path:       /languages
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Requires Plugins:  buddypress
  */
 
 // Exit if accessed directly.
@@ -72,11 +73,11 @@ class BuddyBirthday {
 	}
 
 	public function buddy_birthday_init() {
-		add_action( 'plugins_loaded', array( $this, 'check_dependencies' ), 1 );
+		add_action( 'plugins_loaded', array( $this, 'buddy_birthday_check_dependencies' ), 1 );
 		add_action( 'plugins_loaded', array( $this, 'buddy_birthday_setup_constants' ), 2 );
-		add_action( 'bp_init', array( $this, 'load_includes' ), 4 );
+		add_action( 'bp_init', array( $this, 'buddy_birthday_load_includes' ), 4 );
 		add_action( 'init', array( $this, 'buddy_birthday_block_init' ) );
-		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+		add_action( 'admin_notices', array( $this, 'buddy_birthday_admin_notices' ) );
 	}
 
 	/**
@@ -84,10 +85,10 @@ class BuddyBirthday {
 	 *
 	 * @return bool True if dependencies are met, false otherwise.
 	 */
-	public function check_dependencies() {
+	public function buddy_birthday_check_dependencies() {
 		// Check if BuddyPress is active
 		if ( ! function_exists( 'buddypress' ) ) {
-			add_action( 'admin_notices', array( $this, 'missing_buddypress_notice' ) );
+			add_action( 'admin_notices', array( $this, 'buddy_birthday_missing_buddypress_notice' ) );
 			return false;
 		}
 
@@ -97,8 +98,8 @@ class BuddyBirthday {
 	/**
 	 * Load plugin includes
 	 */
-	public function load_includes() {
-		if ( ! $this->check_dependencies() ) {
+	public function buddy_birthday_load_includes() {
+		if ( ! $this->buddy_birthday_check_dependencies() ) {
 			return;
 		}
 
@@ -117,22 +118,22 @@ class BuddyBirthday {
 	/**
 	 * Display admin notices
 	 */
-	public function admin_notices() {
+	public function buddy_birthday_admin_notices() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
 		// Check if birthday field is configured
-		$field_id = get_option( 'bp_birthday_field_id', 0 );
+		$field_id = get_option( 'buddy_birthday_field_id', 0 );
 		if ( ! $field_id && function_exists( 'buddypress' ) ) {
-			$this->no_birthday_field_notice();
+			$this->buddy_birthday_no_birthday_field_notice();
 		}
 	}
 
 	/**
 	 * Admin notice for missing BuddyPress
 	 */
-	public function missing_buddypress_notice() {
+	public function buddy_birthday_missing_buddypress_notice() {
 		?>
 		<div class="notice notice-error">
 			<p>
@@ -151,7 +152,7 @@ class BuddyBirthday {
 	/**
 	 * Admin notice for missing birthday field configuration
 	 */
-	public function no_birthday_field_notice() {
+	public function buddy_birthday_no_birthday_field_notice() {
 		$screen = get_current_screen();
 
 		// Don't show on the settings page itself

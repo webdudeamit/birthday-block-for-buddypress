@@ -12,19 +12,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class BuddyPress_Birthday_Admin {
+class Buddy_Birthday_Admin {
 
 	/**
 	 * Singleton instance
 	 *
-	 * @var BuddyPress_Birthday_Admin
+	 * @var Buddy_Birthday_Admin
 	 */
 	private static $instance = null;
 
 	/**
 	 * Get singleton instance
 	 *
-	 * @return BuddyPress_Birthday_Admin
+	 * @return Buddy_Birthday_Admin
 	 */
 	public static function get_instance() {
 		if ( null === self::$instance ) {
@@ -37,32 +37,32 @@ class BuddyPress_Birthday_Admin {
 	 * Constructor
 	 */
 	private function __construct() {
-		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
-		add_action( 'admin_init', array( $this, 'register_settings' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+		add_action( 'admin_menu', array( $this, 'buddy_birthday_add_admin_menu' ) );
+		add_action( 'admin_init', array( $this, 'buddy_birthday_register_settings' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'buddy_birthday_enqueue_admin_scripts' ) );
 	}
 
 	/**
 	 * Add admin menu item
 	 */
-	public function add_admin_menu() {
+	public function buddy_birthday_add_admin_menu() {
 		add_options_page(
 			__( 'Birthday Block for BuddyPress Settings', 'birthday-block-for-buddypress' ),
 			__( 'BP Birthday', 'birthday-block-for-buddypress' ),
 			'manage_options',
-			'bp-birthday-settings',
-			array( $this, 'render_settings_page' )
+			'buddy-birthday-settings',
+			array( $this, 'buddy_birthday_render_settings_page' )
 		);
 	}
 
 	/**
 	 * Register settings
 	 */
-	public function register_settings() {
+	public function buddy_birthday_register_settings() {
 		// Register settings
 		register_setting(
-			'bp_birthday_settings',
-			'bp_birthday_field_id',
+			'buddy_birthday_settings',
+			'buddy_birthday_field_id',
 			array(
 				'type'              => 'integer',
 				'sanitize_callback' => 'absint',
@@ -71,8 +71,8 @@ class BuddyPress_Birthday_Admin {
 		);
 
 		register_setting(
-			'bp_birthday_settings',
-			'bp_birthday_default_range',
+			'buddy_birthday_settings',
+			'buddy_birthday_default_range',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -81,8 +81,8 @@ class BuddyPress_Birthday_Admin {
 		);
 
 		register_setting(
-			'bp_birthday_settings',
-			'bp_birthday_default_limit',
+			'buddy_birthday_settings',
+			'buddy_birthday_default_limit',
 			array(
 				'type'              => 'integer',
 				'sanitize_callback' => 'absint',
@@ -92,42 +92,42 @@ class BuddyPress_Birthday_Admin {
 
 		// Add settings section
 		add_settings_section(
-			'bp_birthday_main_section',
+			'buddy_birthday_main_section',
 			__( 'Birthday Field Configuration', 'birthday-block-for-buddypress' ),
-			array( $this, 'render_section_description' ),
-			'bp-birthday-settings'
+			array( $this, 'buddy_birthday_render_section_description' ),
+			'buddy-birthday-settings'
 		);
 
 		// Add settings fields
 		add_settings_field(
-			'bp_birthday_field_id',
+			'buddy_birthday_field_id',
 			__( 'Birthday Profile Field', 'birthday-block-for-buddypress' ),
-			array( $this, 'render_field_select' ),
-			'bp-birthday-settings',
-			'bp_birthday_main_section'
+			array( $this, 'buddy_birthday_render_field_select' ),
+			'buddy-birthday-settings',
+			'buddy_birthday_main_section'
 		);
 
 		add_settings_field(
-			'bp_birthday_default_range',
+			'buddy_birthday_default_range',
 			__( 'Default Birthday Range', 'birthday-block-for-buddypress' ),
-			array( $this, 'render_range_select' ),
-			'bp-birthday-settings',
-			'bp_birthday_main_section'
+			array( $this, 'buddy_birthday_render_range_select' ),
+			'buddy-birthday-settings',
+			'buddy_birthday_main_section'
 		);
 
 		add_settings_field(
-			'bp_birthday_default_limit',
+			'buddy_birthday_default_limit',
 			__( 'Default Number to Display', 'birthday-block-for-buddypress' ),
-			array( $this, 'render_limit_field' ),
-			'bp-birthday-settings',
-			'bp_birthday_main_section'
+			array( $this, 'buddy_birthday_render_limit_field' ),
+			'buddy-birthday-settings',
+			'buddy_birthday_main_section'
 		);
 	}
 
 	/**
 	 * Render settings page
 	 */
-	public function render_settings_page() {
+	public function buddy_birthday_render_settings_page() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
@@ -135,22 +135,22 @@ class BuddyPress_Birthday_Admin {
 		// Check if settings have been saved
 		if ( isset( $_GET['settings-updated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			add_settings_error(
-				'bp_birthday_messages',
-				'bp_birthday_message',
+				'buddy_birthday_messages',
+				'buddy_birthday_message',
 				__( 'Settings Saved', 'birthday-block-for-buddypress' ),
 				'updated'
 			);
 		}
 
-		settings_errors( 'bp_birthday_messages' );
+		settings_errors( 'buddy_birthday_messages' );
 		?>
 		<div class="wrap bp-birthday-admin-settings">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 			<form action="options.php" method="post">
 				<?php
-				settings_fields( 'bp_birthday_settings' );
-				do_settings_sections( 'bp-birthday-settings' );
+				settings_fields( 'buddy_birthday_settings' );
+				do_settings_sections( 'buddy-birthday-settings' );
 				submit_button( __( 'Save Settings', 'birthday-block-for-buddypress' ) );
 				?>
 			</form>
@@ -180,16 +180,16 @@ class BuddyPress_Birthday_Admin {
 	/**
 	 * Render section description
 	 */
-	public function render_section_description() {
+	public function buddy_birthday_render_section_description() {
 		echo '<p>' . esc_html__( 'Select which xProfile field contains member birthdays. Only date-type fields are shown.', 'birthday-block-for-buddypress' ) . '</p>';
 	}
 
 	/**
 	 * Render field select
 	 */
-	public function render_field_select() {
-		$current_field = get_option( 'bp_birthday_field_id', 0 );
-		$date_fields   = $this->get_date_fields();
+	public function buddy_birthday_render_field_select() {
+		$current_field = get_option( 'buddy_birthday_field_id', 0 );
+		$date_fields   = $this->buddy_birthday_get_date_fields();
 
 		if ( empty( $date_fields ) ) {
 			echo '<p class="description">';
@@ -201,7 +201,7 @@ class BuddyPress_Birthday_Admin {
 		}
 
 		?>
-		<select name="bp_birthday_field_id" id="bp_birthday_field_id">
+		<select name="buddy_birthday_field_id" id="buddy_birthday_field_id">
 			<option value="0"><?php esc_html_e( '-- Select a Field --', 'birthday-block-for-buddypress' ); ?></option>
 			<?php foreach ( $date_fields as $field ) : ?>
 				<option value="<?php echo esc_attr( $field->id ); ?>" <?php selected( $current_field, $field->id ); ?>>
@@ -218,10 +218,10 @@ class BuddyPress_Birthday_Admin {
 	/**
 	 * Render range select
 	 */
-	public function render_range_select() {
-		$current_range = get_option( 'bp_birthday_default_range', 'upcoming' );
+	public function buddy_birthday_render_range_select() {
+		$current_range = get_option( 'buddy_birthday_default_range', 'upcoming' );
 		?>
-		<select name="bp_birthday_default_range" id="bp_birthday_default_range">
+		<select name="buddy_birthday_default_range" id="buddy_birthday_default_range">
 			<option value="upcoming" <?php selected( $current_range, 'upcoming' ); ?>>
 				<?php esc_html_e( 'Upcoming (All Future)', 'birthday-block-for-buddypress' ); ?>
 			</option>
@@ -244,10 +244,10 @@ class BuddyPress_Birthday_Admin {
 	/**
 	 * Render limit field
 	 */
-	public function render_limit_field() {
-		$current_limit = get_option( 'bp_birthday_default_limit', 5 );
+	public function buddy_birthday_render_limit_field() {
+		$current_limit = get_option( 'buddy_birthday_default_limit', 5 );
 		?>
-		<input type="number" name="bp_birthday_default_limit" id="bp_birthday_default_limit"
+		<input type="number" name="buddy_birthday_default_limit" id="buddy_birthday_default_limit"
 			   value="<?php echo esc_attr( $current_limit ); ?>" min="1" max="50" />
 		<p class="description">
 			<?php esc_html_e( 'Default number of birthdays to display in the block.', 'birthday-block-for-buddypress' ); ?>
@@ -260,7 +260,7 @@ class BuddyPress_Birthday_Admin {
 	 *
 	 * @return array Date fields.
 	 */
-	private function get_date_fields() {
+	private function buddy_birthday_get_date_fields() {
 		if ( ! function_exists( 'bp_xprofile_get_groups' ) ) {
 			return array();
 		}
@@ -280,7 +280,7 @@ class BuddyPress_Birthday_Admin {
 	 *
 	 * @param string $hook Current admin page hook.
 	 */
-	public function enqueue_admin_scripts( $hook ) {
+	public function buddy_birthday_enqueue_admin_scripts( $hook ) {
 		if ( 'settings_page_bp-birthday-settings' !== $hook ) {
 			return;
 		}
@@ -298,4 +298,4 @@ class BuddyPress_Birthday_Admin {
 	}
 }
 
-BuddyPress_Birthday_Admin::get_instance();
+Buddy_Birthday_Admin::get_instance();

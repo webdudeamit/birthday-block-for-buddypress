@@ -10,7 +10,7 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-class BuddyPress_Birthday_Members {
+class Buddy_Birthday_Members {
 
 	/**
 	 * Holds the class instance.
@@ -29,12 +29,12 @@ class BuddyPress_Birthday_Members {
 	}
 
 	/**
-	 * The method you use to get the BuddyPress_Birthday_Members's instance.
+	 * The method you use to get the Buddy_Birthday_Members's instance.
 	 *
 	 * This method ensures that only one instance of the class is created,
 	 * reducing memory usage and improving performance.
 	 *
-	 * @return BuddyPress_Birthday_Members The instance of the class.
+	 * @return Buddy_Birthday_Members The instance of the class.
 	 */
 	public static function get_instance() {
 		$cls = static::class;
@@ -51,13 +51,13 @@ class BuddyPress_Birthday_Members {
 	 * Registers a custom REST API route using the 'rest_api_init' action hook.
 	 */
 	public function init() {
-		add_action( 'rest_api_init', array( $this, 'bpbday_register_custom_routes' ) );
+		add_action( 'rest_api_init', array( $this, 'buddy_birthday_register_custom_routes' ) );
 	}
 
 	/**
 	 * Register REST API routes
 	 */
-	public function bpbday_register_custom_routes() {
+	public function buddy_birthday_register_custom_routes() {
 		register_rest_route(
 			'buddypress-birthday/v1',
 			'/birthdays',
@@ -136,7 +136,7 @@ class BuddyPress_Birthday_Members {
 
 		// Get birthday field ID from settings if not provided
 		if ( ! $field_id ) {
-			$field_id = get_option( 'bp_birthday_field_id', 0 );
+			$field_id = get_option( 'buddy_birthday_field_id', 0 );
 		}
 
 		if ( ! $field_id ) {
@@ -166,12 +166,12 @@ class BuddyPress_Birthday_Members {
 		$user_id = ( 'friends' === $scope ) ? get_current_user_id() : 0;
 
 		// Use helper function if available, otherwise return empty array
-		if ( function_exists( 'bp_birthday_get_upcoming_birthdays' ) ) {
-			return bp_birthday_get_upcoming_birthdays( $field_id, $range, $limit, $scope, $user_id );
+		if ( function_exists( 'buddy_birthday_get_upcoming_birthdays' ) ) {
+			return buddy_birthday_get_upcoming_birthdays( $field_id, $range, $limit, $scope, $user_id );
 		}
 
 		return array();
 	}
 }
 
-BuddyPress_Birthday_Members::get_instance();
+Buddy_Birthday_Members::get_instance();

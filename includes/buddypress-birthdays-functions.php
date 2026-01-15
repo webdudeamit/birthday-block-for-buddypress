@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param string $birthday Date in Y-m-d format.
  * @return int Age in years.
  */
-function bp_birthday_calculate_age( $birthday ) {
-	if ( empty( $birthday ) || ! bp_birthday_validate_date( $birthday ) ) {
+function buddy_birthday_calculate_age( $birthday ) {
+	if ( empty( $birthday ) || ! buddy_birthday_validate_date( $birthday ) ) {
 		return 0;
 	}
 
@@ -42,7 +42,7 @@ function bp_birthday_calculate_age( $birthday ) {
  * @param int    $user_id User ID (for friends scope).
  * @return array Birthday data.
  */
-function bp_birthday_get_upcoming_birthdays( $field_id, $range = 'upcoming', $limit = 5, $scope = 'all', $user_id = 0 ) {
+function buddy_birthday_get_upcoming_birthdays( $field_id, $range = 'upcoming', $limit = 5, $scope = 'all', $user_id = 0 ) {
 	global $wpdb;
 
 	$field_id = absint( $field_id );
@@ -79,7 +79,7 @@ function bp_birthday_get_upcoming_birthdays( $field_id, $range = 'upcoming', $li
 	}
 
 	// Add ORDER BY based on range
-	$sql .= ' ORDER BY ' . bp_birthday_get_upcoming_sort_sql();
+	$sql .= ' ORDER BY ' . buddy_birthday_get_upcoming_sort_sql();
 	$sql .= ' LIMIT %d';
 	$prepare_args[] = $limit * 3; // Get more results for filtering
 	// Prepare and execute query
@@ -95,12 +95,12 @@ function bp_birthday_get_upcoming_birthdays( $field_id, $range = 'upcoming', $li
 	$birthdays = array();
 	foreach ( $results as $row ) {
 		// Validate date
-		if ( ! bp_birthday_validate_date( $row->birthday ) ) {
+		if ( ! buddy_birthday_validate_date( $row->birthday ) ) {
 			continue;
 		}
 
 		// Check if birthday is in the specified range
-		if ( ! bp_birthday_is_in_range( $row->birthday, $range ) ) {
+		if ( ! buddy_birthday_is_in_range( $row->birthday, $range ) ) {
 			continue;
 		}
 
@@ -110,10 +110,10 @@ function bp_birthday_get_upcoming_birthdays( $field_id, $range = 'upcoming', $li
 		}
 
 		$user_id          = absint( $row->ID );
-		$age              = bp_birthday_calculate_age( $row->birthday );
-		$next_birthday    = bp_birthday_get_next_birthday_date( $row->birthday );
-		$days_until       = bp_birthday_get_days_until( $row->birthday );
-		$formatted_date   = bp_birthday_format_date( $next_birthday );
+		$age              = buddy_birthday_calculate_age( $row->birthday );
+		$next_birthday    = buddy_birthday_get_next_birthday_date( $row->birthday );
+		$days_until       = buddy_birthday_get_days_until( $row->birthday );
+		$formatted_date   = buddy_birthday_format_date( $next_birthday );
 
 		// Get avatar URL
 		$avatar_args = array(
@@ -157,7 +157,7 @@ function bp_birthday_get_upcoming_birthdays( $field_id, $range = 'upcoming', $li
  *
  * @return string SQL ORDER BY clause.
  */
-function bp_birthday_get_upcoming_sort_sql() {
+function buddy_birthday_get_upcoming_sort_sql() {
 	// This sorts birthdays by the next occurrence (handling year wrap-around)
 	// Note: %% is used to escape % for wpdb->prepare()
 	return "CASE
@@ -174,7 +174,7 @@ function bp_birthday_get_upcoming_sort_sql() {
  * @param string $range Range type.
  * @return bool True if in range, false otherwise.
  */
-function bp_birthday_is_in_range( $birthday, $range ) {
+function buddy_birthday_is_in_range( $birthday, $range ) {
 	if ( empty( $birthday ) ) {
 		return false;
 	}
@@ -218,7 +218,7 @@ function bp_birthday_is_in_range( $birthday, $range ) {
  * @param string $birthday Original birthday date.
  * @return string Next birthday date in Y-m-d format.
  */
-function bp_birthday_get_next_birthday_date( $birthday ) {
+function buddy_birthday_get_next_birthday_date( $birthday ) {
 	if ( empty( $birthday ) ) {
 		return '';
 	}
@@ -248,8 +248,8 @@ function bp_birthday_get_next_birthday_date( $birthday ) {
  * @param string $birthday Original birthday date.
  * @return int Number of days until next birthday.
  */
-function bp_birthday_get_days_until( $birthday ) {
-	$next_birthday = bp_birthday_get_next_birthday_date( $birthday );
+function buddy_birthday_get_days_until( $birthday ) {
+	$next_birthday = buddy_birthday_get_next_birthday_date( $birthday );
 	if ( empty( $next_birthday ) ) {
 		return 0;
 	}
@@ -271,7 +271,7 @@ function bp_birthday_get_days_until( $birthday ) {
  * @param string $format PHP date format (default: 'F d').
  * @return string Formatted date.
  */
-function bp_birthday_format_date( $date, $format = 'F d' ) {
+function buddy_birthday_format_date( $date, $format = 'F d' ) {
 	if ( empty( $date ) ) {
 		return '';
 	}
@@ -290,7 +290,7 @@ function bp_birthday_format_date( $date, $format = 'F d' ) {
  * @param string $date Date string to validate.
  * @return bool True if valid, false otherwise.
  */
-function bp_birthday_validate_date( $date ) {
+function buddy_birthday_validate_date( $date ) {
 	if ( empty( $date ) ) {
 		return false;
 	}

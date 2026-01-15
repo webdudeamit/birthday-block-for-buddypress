@@ -15,11 +15,11 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  *
  * Deletes all options created by the plugin from the database.
  */
-function bp_birthday_uninstall() {
+function buddy_birthday_uninstall() {
 	// Delete plugin options
-	delete_option( 'bp_birthday_field_id' );
-	delete_option( 'bp_birthday_default_range' );
-	delete_option( 'bp_birthday_default_limit' );
+	delete_option( 'buddy_birthday_field_id' );
+	delete_option( 'buddy_birthday_default_range' );
+	delete_option( 'buddy_birthday_default_limit' );
 
 	// If multisite, delete options for all sites
 	if ( is_multisite() ) {
@@ -32,9 +32,9 @@ function bp_birthday_uninstall() {
 			switch_to_blog( $blog_id );
 
 			// Delete options for this site
-			delete_option( 'bp_birthday_field_id' );
-			delete_option( 'bp_birthday_default_range' );
-			delete_option( 'bp_birthday_default_limit' );
+			delete_option( 'buddy_birthday_field_id' );
+			delete_option( 'buddy_birthday_default_range' );
+			delete_option( 'buddy_birthday_default_limit' );
 
 			restore_current_blog();
 		}
@@ -45,4 +45,4 @@ function bp_birthday_uninstall() {
 }
 
 // Run the uninstall function
-bp_birthday_uninstall();
+buddy_birthday_uninstall();
