@@ -11,7 +11,7 @@
  * Plugin Name:       Birthday Block for BuddyPress
  * Plugin URI:        https://wordpress.org/plugins/birthday-block-for-buddypress/
  * Description:       Show upcoming birthdays of your BuddyPress members using a beautiful, customizable Gutenberg block—perfect for boosting community engagement!
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Amit Kumar Agrahari

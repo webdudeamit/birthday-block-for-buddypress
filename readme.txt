@@ -1,10 +1,10 @@
 === Birthday Block for BuddyPress ===
-Contributors: amitgrhr
+Contributors: amitgrhr,imranmd
 Tags: buddypress, birthday, members, community, block
 Requires at least: 5.2
 Tested up to: 6.9
 Requires PHP: 7.2
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,9 @@ Yes! The plugin uses standard BuddyPress CSS classes. You can add custom CSS to 
 4. Birthday block with different display options
 
 == Changelog ==
+
+= 1.1.0 =
+Added compatibility with WordPress 6.9.1
 
 = 1.0.0 =
 * Initial release
